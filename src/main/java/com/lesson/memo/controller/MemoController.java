@@ -53,7 +53,7 @@ public class MemoController {
         memo.setUpdatedAt(LocalDateTime.now());
         memoRepository.save(memo);
         // メモ一覧ページへリダイレクトするように記述してください。
-        return "redirect:/memo/new";
+        return "redirect:/memo";
     }
 
 }

@@ -1,6 +1,7 @@
 package com.lesson.memo.controller;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.validation.Valid;
 
@@ -24,14 +25,16 @@ public class MemoController {
     private MemoRepository memoRepository;
 
     // メモ一覧を表示する機能を記述してください
-    // @GetMapping
+    @GetMapping
     // 関数名はlist
-    // public String -----(-----) {
-    //     // メモ一覧を取得する記述を記述してください。変数名はmemosとしてください。
-    //     // モデルにmemosを追加する記述を記述してください
-    //     // テンプレートはmemo-list.htmlを使用してください
-    //     return "-----";
-    // }
+     public String list(Model model) {
+         // メモ一覧を取得する記述を記述してください。変数名はmemosとしてください。
+    	List<Memo> memos = memoRepository.findAll();
+         // モデルにmemosを追加する記述を記述してください
+    	model.addAttribute("memos", memos);
+         // テンプレートはmemo-list.htmlを使用してください
+    	return "memo-list";
+     }
 
     @GetMapping("/new")
     public String showForm(Model model) {

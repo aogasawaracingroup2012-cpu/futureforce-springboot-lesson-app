@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メモ一覧</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="app-title">メモ一覧</h1>
+            <a th:href="@{/memo/new}" class="btn btn-primary">
+                <i class="ri-add-circle-line"></i> 新規メモ
+            </a>
+        </div>
+
+        <div class="notes-grid">
+            <!-- メモ一覧を表示する記述を記述してください。変数名はmemoとしてください。 -->
+            <div class="note-card" th:each="memo : ${memos}">
+                <div class="note-card-header">
+                    <!-- メモのタイトルを表示する記述を記述してください。 -->
+                    <h3 class="note-card-title" th:text="${memo.title}">タイトル</h3>
+                </div>
+                <div class="note-card-content">
+                    <!-- メモの内容を表示する記述を記述してください。 -->
+                    <p class="note-card-text" th:text="${memo.content}">内容</p>
+                </div>
+                <div class="note-card-footer">
+                    <!-- メモの日付を表示する記述を記述してください。表示形式はyyyy/MM/dd HH:mmとしてください。 -->
+                    <p class="note-date" th:text="${#temporals.format(memo.createdAt,'yyyy/MM/dd HH:mm')}">日付</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- メモがない場合の表示を記述してください。 -->
+        <div th:if="${memos.isEmpty()}" class="empty-state">
+            <p>メモがありません</p>
+            <!-- メモ作成ページへのリンクを記述してください。 -->
+            <a th:href="@{/memo/new}" class="btn btn-primary">新しいメモを作成</a>
+        </div>
+    </div>
+    <script th:src="@{/js/common.js}"></script>
+</body>
+
+</html>

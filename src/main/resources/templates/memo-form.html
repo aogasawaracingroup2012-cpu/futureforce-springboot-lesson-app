@@ -14,23 +14,22 @@
     <div class="container">
         <div class="header">
             <h1 class="app-title">メモ作成</h1>
-            <a th:href="@{/}" class="btn btn-outline"><i class="ri-arrow-left-line"></i> 戻る</a>
+            <!-- メモ一覧ページへのリンクを記述してください。 -->
+            <a th:href="@{/memo}" class="btn btn-outline"><i class="ri-arrow-left-line"></i> 戻る</a>
         </div>
 
         <div class="note-form-card">
-            <form action="/" method="">
+            <form th:action="@{/memo/create}" th:object="${memo}" method="post">
                 <div class="form-group">
                     <label>タイトル：</label>
-                    <input type="text" name="title">
-                    <!-- ここにエラーメッセージを表示してください -->
-                    <div class="error-message"></div>
+                    <input type="text" th:field="*{title}">
+                    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-message"></div>
                 </div>
 
                 <div class="form-group">
                     <label>内容：</label>
-                    <textarea name="content"></textarea>
-                    <!-- ここにエラーメッセージを表示してください -->
-                    <div class="error-message"></div>
+                    <textarea th:field="*{content}"></textarea>
+                    <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="error-message"></div>
                 </div>
 
                 <div class="form-button-container">

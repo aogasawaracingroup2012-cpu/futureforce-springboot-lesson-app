@@ -129,6 +129,6 @@ public class MemoController {
 
          memoRepository.save(memoToUpdate);
          // メモ詳細画面にリダイレクトする記述を記述してください。
-         return "redirect:/memo/detail" + id;
+         return "redirect:/memo/detail/" + id;
      }
 }

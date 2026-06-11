@@ -29,7 +29,7 @@
                 <div class="note-card-footer">
                     <p class="note-date" th:text="${#temporals.format(memo.createdAt, 'yyyy/MM/dd HH:mm')}">日付</p>
                     <div class="note-actions">
-                        <a th:href="@{/}" class="btn btn-primary">詳細</a>
+                        <a th:href="@{|/memo/detail/${memo.id}|}" class="btn btn-primary">詳細</a>
                     </div>
                 </div>
             </div>

@@ -13,24 +13,24 @@
     <div class="container">
         <div class="header">
             <h1 class="app-title">メモ詳細</h1>
-            <a th:href="@{/}" class="btn btn-outline"><i class="ri-arrow-left-line"></i> 戻る</a>
+            <a th:href="@{/memos}" class="btn btn-outline"><i class="ri-arrow-left-line"></i> 戻る</a>
         </div>
         <div class="note-card note-card-large">
             <div class="note-card-header">
                 <!-- メモのタイトルを表示する記述を記述してください。 -->
-                <h2 class="note-card-title">タイトル</h2>
+                <h2 class="note-card-title" th:text="${memo.title}">タイトル</h2>
             </div>
             <div class="note-card-content">
                 <!-- メモの内容を表示する記述を記述してください。 -->
-                <p class="note-card-text">本文</p>
+                <p class="note-card-text" th:text="${memo.content}">本文</p>
             </div>
 
             <div class="note-card-footer detail-footer">
                 <!-- メモの作成日時を表示する記述を記述してください。表示形式はyyyy/MM/dd HH:mmとしてください。 -->
-                <p class="note-date">作成日時</p>
+                <p class="note-date" th:text="${#temporals.format(memo.createdAt,'yyyy/MM/dd HH:mmm')}">作成日時</p>
                 <div class="note-actions">
                     <!-- メモ編集画面へのリンクを記述してください。 -->
-                    <a th:href="@{/}" class="btn btn-primary">編集</a>
+                    <a th:href="@{|/memo/edit/${memo.id}|}" class="btn btn-primary">編集</a>
                 </div>
             </div>
         </div>

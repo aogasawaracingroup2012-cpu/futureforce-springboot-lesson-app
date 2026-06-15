@@ -117,11 +117,17 @@ public class MemoController {
     }
 
     // 【/memo/delete/{id}】にアクセスしたら、メモを削除する機能を記述してください
-    // @GetMapping("-----")
+     @GetMapping("/delete/{id}")
     // 関数名はdelete
-    // public String -----(-----) {
-    //     // メモを削除する記述を記述してください。
-    //     // メモ一覧画面にリダイレクトする記述を記述してください。
-    //     return "redirect:-----";
-    // }
+     public String delete(@PathVariable Long id, HttpServletResponse response) {
+         // メモを削除する記述を記述してください。
+    	 if(memoRepository.existsById(id)) { // findByID(id)はあればOptional[Memo]を返しなければOptional.emptyを返すが、existsById(id)はあるかどうかのみを真偽で返す。
+    		memoRepository.deleteById(id);
+    	 } else {
+    		 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+    		 return "not-found";
+    	 }
+         // メモ一覧画面にリダイレクトする記述を記述してください。
+         return "redirect:/memo";
+     }
 }

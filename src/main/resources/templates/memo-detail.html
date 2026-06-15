@@ -27,7 +27,7 @@
                 <div class="note-actions">
                     <a th:href="@{|/memo/edit/${memo.id}|}" class="btn btn-primary">編集</a>
                     <!-- 削除ボタンをクリックしたら、削除をする処理が動くように記述してください。 -->
-                    <a th:href="@{/}" class="btn btn-danger">削除</a>
+                    <a th:href="@{|/memo/delete/${memo.id}|}" class="btn btn-danger">削除</a>
                 </div>
             </div>
         </div>

@@ -1,456 +1,777 @@
+/* ===== シンプルで洗練された青系カラーパレット ===== */
 :root {
-  --color-primary: #14b8a6;
-  --color-primary-dark: #0d9488;
-  --color-secondary: #3b82f6;
-  --color-secondary-dark: #2563eb;
-  --color-background: #f8fafc;
-  --color-background-alt: #f1f5f9;
-  --color-text: #334155;
-  --color-text-light: #64748b;
-  --color-white: #ffffff;
-  --color-border: #e2e8f0;
-  --color-danger: #ef4444;
-  --color-danger-dark: #dc2626;
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* プライマリカラー - 上品な青系 */
+  --primary: #1e40af;
+  --primary-hover: #1d4ed8;
+  --primary-light: #dbeafe;
+  --primary-ultra-light: #eff6ff;
+  --primary-foreground: #ffffff;
+  
+  /* セカンダリカラー - 薄い青 */
+  --secondary: #3b82f6;
+  --secondary-hover: #2563eb;
+  --secondary-light: #e0f2fe;
+  
+  /* アクセントカラー - 控えめな青緑 */
+  --accent: #0891b2;
+  --accent-hover: #0e7490;
+  
+  /* 危険色 */
+  --destructive: #dc2626;
+  --destructive-hover: #b91c1c;
+  --destructive-foreground: #ffffff;
+  
+  /* ニュートラルカラー - 洗練された灰色系 */
+  --muted: #64748b;
+  --muted-foreground: #475569;
+  --muted-light: #94a3b8;
+  --muted-background: #f8fafc;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --input-border: #cbd5e1;
+  
+  /* 背景色 - 統一された青みがかった白・灰色系 */
+  --background: #f8fafc;
+  --background-secondary: #f1f5f9;
+  --background-tertiary: #e2e8f0;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --card-muted: #f8fafc;
+  
+  /* ステータスカラー */
+  --status-new: #1e40af;
+  --status-progress: #d97706;
+  --status-done: #059669;
+  
+  /* シャドウとエフェクト - より控えめに */
   --radius: 0.5rem;
-  --transition: all 0.3s ease;
+  --radius-sm: 0.375rem;
+  --radius-lg: 0.75rem;
+  --shadow: 0 1px 3px 0 rgb(30 64 175 / 0.08), 0 1px 2px -1px rgb(30 64 175 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(30 64 175 / 0.08), 0 2px 4px -2px rgb(30 64 175 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(30 64 175 / 0.08), 0 4px 6px -4px rgb(30 64 175 / 0.05);
+  --shadow-xl: 0 20px 25px -5px rgb(30 64 175 / 0.1), 0 8px 10px -6px rgb(30 64 175 / 0.05);
+  
+  /* 統一されたグラデーション */
+  --gradient-primary: linear-gradient(135deg, #1e40af 0%, #1d4ed8 100%);
+  --gradient-background: linear-gradient(135deg, #f8fafc 0%, #c2def8 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(30, 64, 175, 0.02) 0%, rgba(59, 130, 246, 0.02) 100%);
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Noto Sans JP', sans-serif;
-  background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
-  color: var(--color-text);
-  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.6;
-}
-
-.app-container {
+  color: var(--card-foreground);
+  background: var(--gradient-background);
   min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 0 1.5rem;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* ===== 統一されたヘッダー ===== */
 .header {
+  padding: 2rem 0;
+  position: relative;
+}
+
+/* ヘッダーの装飾的な背景を削除し、統一感を保つ */
+.header::before {
+  display: none;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 2;
+}
+
+.header h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  color: var(--card-foreground);
+  text-shadow: none;
+}
+
+.header p {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted-foreground);
+  text-decoration: none;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--card);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.back-link:hover {
+  background: var(--primary-ultra-light);
+  color: var(--primary);
+  border-color: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.back-link .material-symbols-outlined {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-.app-title {
-  font-size: 2.25rem;
-  font-weight: 700;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.form-title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-/* ボタンスタイル */
+/* ===== 洗練されたボタンスタイル ===== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem;
   border-radius: var(--radius);
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-  border: none;
+  font-weight: 600;
   font-size: 0.875rem;
-  text-decoration: none; /* 下線を削除 */
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  position: relative;
+  text-decoration: none;
 }
 
-.btn:hover {
-  text-decoration: none; /* ホバー時も下線を削除 */
-}
-
-.btn i {
-  margin-right: 0.375rem;
+.btn .material-symbols-outlined {
+  margin-right: 0.5rem;
+  font-size: 1.25rem;
 }
 
 .btn-primary {
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  color: var(--color-white);
-  box-shadow: var(--shadow);
+  background: var(--gradient-primary);
+  color: var(--primary-foreground);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(to right, var(--color-primary-dark), var(--color-secondary-dark));
+  transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-  transform: translateY(-1px);
-  color: var(--color-white);
 }
 
 .btn-outline {
-  background-color: transparent;
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
+  background: var(--card);
+  color: var(--muted-foreground);
+  border: 1px solid var(--border);
 }
 
 .btn-outline:hover {
-  background-color: var(--color-background-alt);
-  color: var(--color-text);
+  background: var(--primary-ultra-light);
+  color: var(--primary);
+  border-color: var(--primary-light);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-danger {
-  background-color: var(--color-danger);
-  color: var(--color-white);
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: var(--destructive-foreground);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-danger:hover {
-  background-color: var(--color-danger-dark);
-  color: var(--color-white);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
-
-.btn-ghost {
-  background-color: transparent;
-  color: var(--color-text);
-  padding-left: 0;
+/* ===== ローディングアニメーション ===== */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
 }
 
-.btn-ghost:hover {
-  color: var(--color-primary);
+.spinner {
+  width: 3rem;
+  height: 3rem;
+  border: 0.25rem solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
 }
 
-.back-btn {
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===== 空の状態 ===== */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 16rem;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  padding: 3rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--card-foreground);
+}
+
+.empty-state p {
   margin-bottom: 1.5rem;
-  display: inline-flex;
+  color: var(--muted-foreground);
+  font-size: 1rem;
+}
+
+/* ===== 洗練されたカードデザイン ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+}
+
+.card-header {
+  padding: 2rem;
+  background: linear-gradient(135deg, var(--card-muted) 0%, var(--background) 100%);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+/* 青いボーダーを削除 */
+.card-header::before {
+  display: none;
+}
+
+.card-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.card-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--card-foreground);
+}
+
+.card-content {
+  padding: 2rem;
+}
+
+.card-footer {
+  padding: 1.5rem 2rem;
+  background: var(--card-muted);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.back-btn i {
-  transition: transform 0.2s ease;
-}
-
-.back-btn:hover i {
-  transform: translateX(-3px);
-}
-
-/* メモカードグリッド */
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
+/* ===== 詳細ページのフッター右側要素 ===== */
+.footer-right {
+  display: flex;
+  align-items: center;
   gap: 1.5rem;
 }
 
-@media (min-width: 640px) {
-  .notes-grid {
+/* ===== 詳細ページのボタン配置（削除） ===== */
+.detail-actions {
+  display: none;
+}
+
+/* ===== フォームページのボタン配置（削除） ===== */
+.form-actions {
+  display: none;
+}
+
+/* ===== テーブルの改善 ===== */
+.table-container {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-light);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+}
+
+.table th {
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--card-muted) 0%, var(--background) 100%);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table tr {
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.table tr:last-child {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background: var(--primary-ultra-light);
+}
+
+/* ===== バッジの改善 ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.375rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: var(--shadow);
+}
+
+.badge-new {
+  background: var(--gradient-primary);
+}
+
+.badge-progress {
+  background: linear-gradient(135deg, var(--status-progress) 0%, #b45309 100%);
+}
+
+.badge-done {
+  background: linear-gradient(135deg, var(--status-done) 0%, #047857 100%);
+}
+
+/* ===== フォームの改善 ===== */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .form-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1024px) {
-  .notes-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.form-group {
+  margin-bottom: 2rem;
+  position: relative;
 }
 
-/* メモカード */
-.note-card {
-  background-color: var(--color-white);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.note-card:hover {
-  box-shadow: var(--shadow-lg);
-}
-
-.note-card-header {
-  padding: 1rem;
-  background: linear-gradient(to right, rgba(20, 184, 166, 0.1), rgba(59, 130, 246, 0.1));
-  border-bottom: 1px solid var(--color-border);
-}
-
-.note-card-title {
-  font-size: 1.125rem;
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
   font-weight: 600;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-bottom: 0.75rem;
+  color: var(--card-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.note-card-content {
-  padding: 1rem;
-  flex-grow: 1;
-}
-
-.note-card-text {
-  color: var(--color-text-light);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  min-height: 4.5rem;
-}
-
-.note-card-footer {
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-background-alt);
-  border-top: 1px solid var(--color-border);
-}
-
-.note-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-
-/* メモ詳細 */
-.note-detail-card {
-  background-color: var(--color-white);
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid var(--input-border);
   border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--card);
 }
 
-.note-detail-header {
-  padding: 1.5rem;
-  background: linear-gradient(to right, rgba(20, 184, 166, 0.1), rgba(59, 130, 246, 0.1));
-  border-bottom: 1px solid var(--color-border);
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light);
+  background: var(--card);
+  transform: translateY(-1px);
 }
 
-.note-date {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.required {
+  color: var(--destructive);
+  font-weight: 700;
+}
+
+.error-message {
+  color: var(--destructive);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  font-weight: 500;
   display: flex;
   align-items: center;
-  color: var(--color-text-light);
-  font-size: 0.875rem;
-  margin-bottom: 0.5rem;
 }
 
-.note-date i {
-  margin-right: 0.25rem;
+.error-message::before {
+  content: '⚠';
+  margin-right: 0.5rem;
 }
 
-.note-detail-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.note-detail-content {
-  padding: 1.5rem;
-  min-height: 200px;
-}
-
-.note-detail-content p {
-  white-space: pre-wrap;
-  line-height: 1.8;
-}
-
-.note-detail-footer {
-  padding: 1rem 1.5rem;
+/* ===== アクションボタンの改善 ===== */
+.action-buttons {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
-  background-color: var(--color-background-alt);
-  border-top: 1px solid var(--color-border);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
-/* フォーム */
-.note-form-card {
-  background-color: var(--color-white);
-  border-radius: var(--radius);
+.table tr:hover .action-buttons {
+  opacity: 1;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  transition: all 0.3s ease;
+  position: relative;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
 }
 
-.form-group {
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--color-border);
+.action-button:hover {
+  color: var(--primary);
+  background: var(--primary-ultra-light);
+  transform: scale(1.1);
 }
 
-.form-group:last-of-type {
-  border-bottom: none;
+.action-button.delete:hover {
+  color: var(--destructive);
+  background: rgba(220, 38, 38, 0.1);
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: var(--color-text);
+/* ===== モーダルの改善 ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.4);
+  backdrop-filter: blur(8px);
+  display: none;
+  z-index: 100;
+  animation: fadeIn 0.3s ease;
 }
 
-input, textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  font-family: inherit;
-  font-size: 1rem;
-  color: var(--color-text);
-  transition: var(--transition);
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  width: 90%;
+  max-width: 32rem;
+  z-index: 101;
+  display: none;
+  border: 1px solid var(--border-light);
+  animation: slideIn 0.3s ease;
 }
 
-input:focus, textarea:focus {
-  outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-textarea {
-  resize: vertical;
-  min-height: 200px;
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to { 
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
 }
 
-.form-footer {
-  padding: 1rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-background-alt);
-  border-top: 1px solid var(--color-border);
+.modal-content {
+  padding: 2rem;
 }
 
-/* 空の状態 */
-.empty-state {
-  text-align: center;
-  padding: 4rem 1rem;
-  background-color: var(--color-white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.empty-state i {
-  font-size: 4rem;
-  color: var(--color-text-light);
-  opacity: 0.3;
-  margin-bottom: 1rem;
-}
-
-.empty-state p {
-  color: var(--color-text-light);
-  font-size: 1.125rem;
-  margin-bottom: 1.5rem;
-}
-
-/* 404ページ */
-.not-found {
-  text-align: center;
-  padding: 4rem 1rem;
-}
-
-.not-found i {
-  font-size: 5rem;
-  color: var(--color-text-light);
-  opacity: 0.3;
-  margin-bottom: 1.5rem;
-}
-
-.not-found h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.not-found p {
-  color: var(--color-text-light);
-  font-size: 1.125rem;
+.modal-header {
   margin-bottom: 2rem;
 }
 
-/* ページ切り替え */
-.page {
-  display: none;
+.modal-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--card-foreground);
 }
 
-.page.active {
-  display: block;
-}
-
-.hidden {
-  display: none;
-}
-
-/* エラーメッセージのスタイル */
-.error-message {
-  color: var(--color-danger);
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-}
-
-/* フォームボタンのスタイル */
-.form-button-container {
+.modal-footer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* ===== 問い合わせ詳細の改善 ===== */
+.contact-info-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .contact-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.contact-info-item {
   padding: 1.5rem;
-  background-color: var(--color-background-alt);
-  border-top: 1px solid var(--color-border);
+  background: var(--gradient-subtle);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
 
-.form-button-container .btn {
-  min-width: 200px;
-  padding: 0.75rem 2rem;
+.contact-info-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  background: var(--primary-ultra-light);
 }
 
-/* フッターのレイアウト調整 */
-.note-card-footer {
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--color-background-alt);
-  border-top: 1px solid var(--color-border);
+.contact-info-item h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
 }
 
-.note-card-footer .note-date {
-  margin: 0;
-  flex: 1;
-  text-align: left;
+.contact-info-item p {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--card-foreground);
 }
 
-.note-card-footer .note-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-left: auto;
+.message-container {
+  margin-top: 2rem;
 }
 
-/* 詳細画面のフッター調整 */
-.note-card-footer.detail-footer {
-  justify-content: space-between;
+.message-container h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted-foreground);
 }
 
-.note-card-footer.detail-footer .note-date {
-  flex: 1;
-  text-align: left;
+.message-box {
+  padding: 1.5rem;
+  background: var(--gradient-subtle);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
-.note-card-footer.detail-footer .note-actions {
-  margin-left: auto;
+.contact-id-container {
+  text-align: right;
+}
+
+.contact-id {
+  font-family: 'JetBrains Mono', monospace;
+  margin-top: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ===== レスポンシブ改善 ===== */
+@media (max-width: 768px) {
+  .header {
+    padding: 1.5rem 0;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .header-content > div:first-child {
+    width: 100%;
+  }
+  
+  .title-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .card {
+    margin: 0 -0.5rem 2rem;
+    border-radius: var(--radius);
+  }
+  
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: 1.5rem;
+  }
+  
+  .card-header-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contact-id-container {
+    text-align: left;
+  }
+  
+  .table-container {
+    margin: 0 -0.5rem;
+    border-radius: var(--radius);
+  }
+  
+  .table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .footer-right {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+  
+  .card-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+/* ===== 追加のアニメーション効果 ===== */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.table-container,
+.empty-state {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* ===== フォーカス状態の改善 ===== */
+.btn:focus,
+.action-button:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
 }

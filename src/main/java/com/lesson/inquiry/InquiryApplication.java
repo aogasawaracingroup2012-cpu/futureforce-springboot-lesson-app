@@ -1,13 +1,13 @@
-package com.lesson.memo;
+package com.lesson.inquiry;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FutureforceSpringbootLessonAppApplication {
+public class InquiryApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FutureforceSpringbootLessonAppApplication.class, args);
+		SpringApplication.run(InquiryApplication.class, args);
 	}
 
 }
